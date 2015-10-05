@@ -138,16 +138,20 @@ int main(int argc, char **argv) {
   P.push_back("STOP");
 
   cout << "vvvvv" << endl;
+  bool bad = true;
   try {
     for(Pi = P.begin(); Pi != P.end() && mnemonic[*Pi]; Pi++) {
         cout << *Pi << endl;
         (mnemonic[*Pi])();
     }
+    bad = false;
   }
-  catch (const int     e) { cout << "int     exception: " << e << endl; }
-  catch (const char    e) { cout << "char    exception: " << e << endl; }
-  catch (const string &e) { cout << "string  exception: " << e << endl; }
-  catch (...)             { cout << "default exception"        << endl; }
+  catch (const int     e) { cout << "except int    : " << e << endl; }
+  catch (const char    e) { cout << "except char   : " << e << endl; }
+  catch (const string &e) { cout << "except string : " << e << endl; }
+  catch (...)             { cout << "except default"        << endl; }
   cout << "^^^^^" << endl;
+  const string suffix[] = { "out", "" };
+  cout << argv[0] << " finished with" << suffix[bad] << " errors" << endl;
   exit(0);
 }
